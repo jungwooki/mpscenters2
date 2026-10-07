@@ -770,3 +770,24 @@ button,input,select,textarea{min-width:0}
 :root[data-theme="light"] .demo{color:#7f8098}
 :root[data-theme="light"] .stage-change,:root[data-theme="light"] .idp-trends small,:root[data-theme="light"] .idp-priority small{color:#7c86a0}
 :root[data-theme="light"] .detail-head{border-color:#e1e3ee}
+/* Individual player outlines, with quiet spacing and no accent rails. */
+.stage-players{gap:10px}
+.stage-players>.player-card-button,.stage-players>.player-card-button.selected{border:1px solid #52525e;border-radius:4px!important;padding:12px}
+:root[data-theme="light"] .stage-players{padding:8px 0 0;gap:10px}
+:root[data-theme="light"] .stage-players>.player-card-button,:root[data-theme="light"] .stage-players>.player-card-button.selected{background:#fff;border:1px solid #d9dcea;border-radius:4px!important;padding:12px;box-shadow:none}
+:root[data-theme="light"] .stage-players>.player-card-button:hover{background:#fafaff;border-color:#b7c7e7}
+@media(max-width:700px){.stage-players>.player-card-button,:root[data-theme="light"] .stage-players>.player-card-button{padding:11px}.stage-players,:root[data-theme="light"] .stage-players{gap:9px}}
+/* Light mode contains no orange accents, including expanded and hover states. */
+:root[data-theme="light"]{--orange:#4b86ee;--lime:#e9f1ff;--warm:#f5f7fd}
+:root[data-theme="light"] .stage-guide,:root[data-theme="light"] .focus-panel{border-color:#dde2ef}
+:root[data-theme="light"] .stage-guide .eyebrow,:root[data-theme="light"] .focus-panel .eyebrow{color:#7f86a1}
+:root[data-theme="light"] .stage-guide p,:root[data-theme="light"] .focus-panel p{color:#646b81}
+:root[data-theme="light"] .stage-guide>div span,:root[data-theme="light"] .focus-choice{background:#fff;border-color:#dce1ee;color:#6c7590}
+:root[data-theme="light"] .focus-choice.active{background:#e9f1ff;border-color:#a8c5f6;color:#3e72bf;box-shadow:none}
+:root[data-theme="light"] .focus-panel>small{color:#8990a6}
+:root[data-theme="light"] .stage-compare>span,:root[data-theme="light"] .focus-optional summary span{color:#779bd0}
+:root[data-theme="light"] .badge{background:#eef2fb;color:#6d7e9f}
+:root[data-theme="light"] .text-danger{color:#a5566f}
+:root[data-theme="light"] .day-grid button small,:root[data-theme="light"] .weekdays span:first-child{color:#6689c0}
+:root[data-theme="light"] .day-grid button:hover,:root[data-theme="light"] .calendar-trigger:hover,:root[data-theme="light"] .player-tabs button:hover{border-color:#a8c5f6}
+:root[data-theme="light"] .tag.stage,:root[data-theme="light"] .tag.maturity,:root[data-theme="light"] .tag.sessions{background:#eef2fa;color:#6c7d9d}
