@@ -627,3 +627,82 @@ button,.button{border-radius:4px!important}
 :root[data-theme="light"] .player-tabs button.active{background:#fff2e9;border-color:#c95330;color:#17395c;-webkit-text-fill-color:#17395c}
 :root[data-theme="light"] .focus-optional summary .focus-select-action{background:#c95330;color:#fff}
 @media(max-width:700px){.stage-group-head{padding-left:9px}.stage-physical-focus{padding-left:12px}.player-tabs button{font-size:16px}.focus-optional summary{gap:8px}.theme-toggle{font-size:10px;padding:7px 6px}.shell .roster.panel{padding:0}.stats strong{font-size:21px}}
+/* White report canvas with subtle section tones and landscape controls. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+button,input,select,textarea{min-width:0}
+.stage-filters{grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+.stage-chip,.stage-chip:not(.all){display:flex;flex-direction:row;align-items:center;justify-content:center;gap:3px;height:44px;min-height:44px;padding:4px 3px;font-size:12px;line-height:1.15;border-radius:4px;overflow-wrap:normal}
+.stage-chip span,.stage-chip:not(.all) span{min-width:0;overflow-wrap:normal;word-break:keep-all}
+.stage-chip b,.stage-chip:not(.all) b{flex:none;margin:0;font-size:11px}
+.stage-chip.all{grid-column:1/-1;height:40px;min-height:40px}
+.stage-group{padding:12px 14px 2px;border-radius:5px;background:#ffffff03}
+.stage-group:nth-child(even){background:#799bf407}
+.player-card-button{border-bottom-color:#ffffff15}
+.player-tabs button{min-height:48px;height:48px;white-space:nowrap}
+.focus-select-action{min-width:92px;white-space:nowrap}
+.calendar-nav button{width:54px;height:36px;border-radius:4px}
+.player-modal-head button,.dialog-head>button{min-width:48px;width:48px;min-height:36px;height:36px;display:grid;place-items:center;padding:0}
+:root[data-theme="light"]{--report-paper:#fff;--line:#dfe7ee}
+:root[data-theme="light"] body,:root[data-theme="light"] .shell,:root[data-theme="light"] .topbar{background:#fff}
+:root[data-theme="light"] .demo,:root[data-theme="light"] .roster .panel-head{border-color:#e5eaf0}
+:root[data-theme="light"] .stage-group{background:#f3f7fc}
+:root[data-theme="light"] .stage-group:nth-child(even){background:#f7f5fc}
+:root[data-theme="light"] .stage-group-head{border-color:#c8d8ea}
+:root[data-theme="light"] .stage-group:nth-child(even) .stage-group-head{border-color:#d9d0ef}
+:root[data-theme="light"] .stage-chip{background:#f4f7fb;border-color:#e3eaf2;color:#35516e}
+:root[data-theme="light"] .stage-chip.active{background:#17395c;border-color:#17395c}
+:root[data-theme="light"] .stage-chip.active b{color:#fff}
+:root[data-theme="light"] .search-label input{background:#fff;border-color:#dce4ec}
+:root[data-theme="light"] .player-card-button,:root[data-theme="light"] .player-card-button.selected{border-bottom-color:#dee6ee}
+:root[data-theme="light"] .player-card-button:hover{background:#ffffff80}
+:root[data-theme="light"] .compact-stage{background:#e7edf6;color:#355579}
+:root[data-theme="light"] .stats{background:#f1f5fa;border:0;border-radius:5px}
+:root[data-theme="light"] .stats article+article{border-color:#dce5ef}
+:root[data-theme="light"] .shell .access.panel{padding:16px;background:#f6f4fb;border:0;border-radius:5px}
+:root[data-theme="light"] .player-modal-head,:root[data-theme="light"] #player-detail-dialog .detail{background:#fff}
+:root[data-theme="light"] .player-tabs button{background:#f1f5fa;border-color:#dce5ef}
+:root[data-theme="light"] .player-tabs button.active{background:#e8eff9;border-color:#94b1d3}
+:root[data-theme="light"] #player-detail-dialog .growth-panel{background:#edf6ff;border:0}
+:root[data-theme="light"] .compact-insights{border:0}
+:root[data-theme="light"] .insight-strip{background:#f3effc;border:0}
+:root[data-theme="light"] .insight-strip.physical{background:#f1f5fa;border:0}
+:root[data-theme="light"] .calendar-main{background:#f2f6fb;border:0}
+:root[data-theme="light"] .calendar-side{background:#f7f5fc;border:0}
+@media(max-width:700px){
+ .shell{width:100%;padding:16px 12px max(32px,env(safe-area-inset-bottom))}
+ .topbar{gap:8px;padding:10px 12px;padding-top:max(10px,env(safe-area-inset-top))}
+ .heading h1{font-size:24px;line-height:1.25}
+ .stage-filters{gap:2px}
+ .stage-chip,.stage-chip:not(.all){height:44px;min-height:44px;padding:3px 2px;gap:2px;font-size:11px;line-height:1.1}
+ .stage-chip:not(.all) span{max-width:none}
+ .stage-chip b,.stage-chip:not(.all) b{font-size:10px;margin:0}
+ .stage-chip.all{height:40px;min-height:40px;font-size:12px}
+ .stage-group{padding:10px 10px 0}
+ .stage-group-head{padding-left:8px}
+ .stage-players{gap:0}
+ .player-card-button{padding:12px 0 14px}
+ .compact-top{gap:4px}
+ .compact-top strong{font-size:14px}
+ .compact-dob{font-size:10px}
+ .compact-stage{font-size:10px;padding:2px 3px}
+ .compact-remaining{font-size:10px}
+ .calendar-label-extra{display:none}
+ .calendar-trigger{white-space:nowrap;padding:7px 8px}
+ .header-actions{gap:4px}
+ .theme-toggle{font-size:10px;padding:6px;min-height:36px}
+ #player-detail-dialog{max-height:calc(100dvh - env(safe-area-inset-top) - 12px)}
+ #player-detail-dialog .detail{padding:14px 12px max(24px,env(safe-area-inset-bottom))}
+ .player-tabs button{font-size:16px}
+ .focus-optional summary{font-size:13px}
+ .focus-optional summary .focus-select-action{padding:8px;min-width:92px}
+ .calendar-modal{padding:14px 12px max(20px,env(safe-area-inset-bottom))}
+ .calendar-main,.calendar-side{padding:12px}
+ .weekdays,.day-grid{gap:2px}
+ .day-grid button,.day-grid .blank{position:relative;min-height:32px;height:32px;padding:3px;font-size:11px;line-height:1.1;border-radius:3px}
+ .day-grid button small{position:absolute;right:2px;bottom:2px;font-size:8px;line-height:1}
+ .day-grid button.has-bookings:after{position:absolute;right:3px;top:4px;margin:0;width:3px;height:3px}
+ input,select,textarea,.calendar-side input,.calendar-side select,dialog input,dialog select{font-size:16px;max-width:100%}
+ .form-pair>*{min-width:0}
+}
+@media(max-width:359px){.brand span{display:none}.heading h1{font-size:22px}.compact-top{gap:3px}.compact-dob{font-size:9px}.compact-stage{font-size:9px}.compact-top strong{font-size:13px}.player-tabs button{font-size:15px}}
+@media(max-width:700px){.stage-chip:not(.all) span{overflow-wrap:anywhere;word-break:keep-all;flex:0 1 auto}.detail-head>div>p:last-child{font-size:12px;line-height:1.5}}
