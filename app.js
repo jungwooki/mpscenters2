@@ -127,7 +127,7 @@ function renderDetail(){const p=players.find(x=>x.id===selected);const detail=$(
   <div class="growth-panel"><div class="growth-title"><span>S · 성장단계</span><strong>${esc(getStage(p))}</strong></div>${report?`<div class="growth-facts"><div><small>검사일</small><b>${esc(displayDate(report.examDate))}</b></div><div><small>생활연령</small><b>${esc(yearsMonths(monthsAt(p.dob,report.examDate)))}</b></div><div><small>뼈나이</small><b>${esc(yearsMonths(report.boneAgeMonths))}</b></div><div><small>차이</small><b>${esc(diffLabel)} · ${esc(report.maturity)}</b></div></div><details class="growth-history"><summary>이전 검사와 비교</summary>${previous?`<div class="stage-compare"><div><small>이전 검사 · ${esc(displayDate(previous.examDate))}</small><b>${esc(previous.stage)}</b></div><span aria-hidden="true">→</span><div><small>최근 검사 · ${esc(displayDate(report.examDate))}</small><b>${esc(report.stage)}</b></div></div><p class="stage-change">${previous.stage===report.stage?'성장단계 유지':'성장단계 변화 · 오늘의 관찰 포인트를 다시 확인하세요.'}</p>`:'<p class="hint">이전 검사 결과가 없습니다.</p>'}</details><div class="next-growth ${nextGrowth<=localDate()?'due':''}"><span>6개월 성장점검</span><b>${esc(displayDate(nextGrowth))}</b></div>`:'<p class="empty">MPS 검사 결과가 연계되면 성장단계와 뼈나이가 표시됩니다.</p>'}</div>
   <div class="insight-panels compact-insights"><section class="insight-strip mental"><div class="insight-strip-head"><span>M · 멘탈 유형</span><strong>${esc(mental?.type||'결과 대기')}</strong></div>${mental?`<div class="insight-inline"><p><small>강점</small>${mental.strengths.map(esc).join(' · ')}</p><p><small>보완</small>${mental.needs.map(esc).join(' · ')}</p></div>`:''}</section><section class="insight-strip physical"><div class="insight-strip-head"><span>P · 피지컬 보강</span><strong>${esc(physical?.focus?.join(' · ')||'결과 대기')}</strong></div>${physical?`<p class="insight-recs"><small>피지컬강점</small>${physical.strengths.map(esc).join(' · ')||'결과 대기'}</p><p class="insight-recs"><small>추천</small>${physical.recommendations.map(esc).join(' · ')}</p>`:''}</section></div>
   </section>
-  <details class="optional focus-optional"><summary>오늘의 지도 포인트 · ${esc(getStage(p))}<span>${esc(p.todayFocus||'선택하기')}</span></summary><div class="focus-panel"><span class="eyebrow">오늘의 지도 포인트 · ${esc(getStage(p))}</span><p>${esc(guide.line)}</p><div class="focus-choices">${guide.points.map(x=>`<button type="button" data-focus="${esc(x)}" class="focus-choice ${p.todayFocus===x?'active':''}" aria-pressed="${p.todayFocus===x}">${esc(x)}</button>`).join('')}</div><small>터치해 선택하면 이번 레슨의 IDP 관찰 포인트로 저장됩니다.</small></div></details>
+  <details class="optional focus-optional"><summary>오늘의 지도 포인트 · ${esc(getStage(p))}<span class="focus-select-action">${p.todayFocus?'변경하기':'선택하기'} ›</span></summary><div class="focus-panel"><span class="eyebrow">오늘의 지도 포인트 · ${esc(getStage(p))}</span><p>${esc(guide.line)}</p><div class="focus-choices">${guide.points.map(x=>`<button type="button" data-focus="${esc(x)}" class="focus-choice ${p.todayFocus===x?'active':''}" aria-pressed="${p.todayFocus===x}">${esc(x)}</button>`).join('')}</div><small>터치해 선택하면 이번 레슨의 IDP 관찰 포인트로 저장됩니다.</small></div></details>
   <p class="hint">M·P·S 내용은 가상 샘플입니다. 성장단계와 성숙도 표기는 MPS 결과 예시이며, 개월 차이만 검사일 기준으로 계산합니다. 추천은 실제 평가와 코치 판단으로 조정합니다.</p>
   <h3 class="section-label additional-label">추가 관리</h3>
   <details class="optional"><summary>짧은 코치 목표 · 선택</summary><label for="goal">기존 코치 목표</label><input id="goal" maxlength="160" value="${esc(p.goal||'')}" placeholder="필요할 때만 짧게 입력"><p class="hint">터치로 고르는 목표는 IDP 스페이스에서 관리합니다.</p></details>
@@ -138,6 +138,7 @@ function renderDetail(){const p=players.find(x=>x.id===selected);const detail=$(
   window.mpsIdpRender?.(p);
 }
 const playerDetailDialog=$('#player-detail-dialog');
+window.mpsReturnToPlayer=playerId=>{if(!players.some(p=>p.id===playerId))return;selected=playerId;renderDetail();playerDetailDialog.showModal()};
 function render(){const list=visiblePlayers();if(!playerDetailDialog.open&&!list.some(p=>p.id===selected))selected=list[0]?.id??null;$('#total-players').textContent=`${players.length}명`;$('#total-remaining').textContent=`${players.reduce((n,p)=>n+Math.max(0,p.paid-p.used),0)}회`;$('#due-count').textContent=`${players.filter(p=>p.report&&sixMonthsAfter(p.report.examDate)<=localDate()).length}명`;renderFilters();renderStageGuide();renderRoster(list);renderDetail()}
 $('#stage-filters').addEventListener('click',e=>{const button=e.target.closest('[data-stage]');if(button){stageFilter=button.dataset.stage;render()}});
 $('#player-list').addEventListener('click',e=>{const button=e.target.closest('[data-id]');if(button){selected=button.dataset.id;activePlayerTab='lesson';renderDetail();playerDetailDialog.showModal()}});
@@ -159,12 +160,36 @@ $('#detail').addEventListener('click',e=>{const p=players.find(x=>x.id===selecte
 const dialog=$('#player-dialog');$('#add-player').addEventListener('click',()=>dialog.showModal());$('#close-dialog').addEventListener('click',()=>dialog.close());
 $('#player-form').addEventListener('submit',e=>{e.preventDefault();const form=new FormData(e.target);const name=String(form.get('name')||'').trim(),dob=String(form.get('dob')||'');if(!name||!dob||dob>localDate()){alert('이름과 생년월일을 확인해 주세요.');return}const id=`demo-${Date.now()}-${Math.random().toString(36).slice(2,6)}`;const p={id,code:`MPS-C-${id.slice(-8).toUpperCase()}`,name,dob,group:String(form.get('group')||'').trim(),coach:String(form.get('coach')||'').trim(),paid:0,used:0,goal:'',report:null,notes:[]};players.unshift(p);stageFilter='검사 전';query='';$('#search').value='';selected=p.id;save();render();e.target.reset();dialog.close();playerDetailDialog.showModal()});
 $('#reset').addEventListener('click',()=>{if(confirm('샘플 데이터를 처음 상태로 되돌릴까요? 입력한 메모, 회차, 예약도 지워집니다.')){if(playerDetailDialog.open)playerDetailDialog.close();players=copy(initialPlayers);selected=players[0].id;stageFilter='전체';query='';$('#search').value='';save();render();window.dispatchEvent(new Event('mps-demo-reset'))}});
-const pageTheme=document.documentElement?.dataset.initialTheme||'dark';
-const THEME_KEY=`mps-centers2-theme-${pageTheme}`;
+// Solar schedule for the sample center in Seoul (KST, 37.5665 N / 126.978 E).
+function solarSchedule(date=localDate()){
+  const day=Math.floor((Date.parse(`${date}T12:00:00Z`)-Date.parse(`${date.slice(0,4)}-01-01T12:00:00Z`))/86400000)+1;
+  const year=Number(date.slice(0,4));const daysInYear=year%4===0&&(year%100!==0||year%400===0)?366:365;
+  const gamma=2*Math.PI/daysInYear*(day-1);
+  const equation=229.18*(.000075+.001868*Math.cos(gamma)-.032077*Math.sin(gamma)-.014615*Math.cos(2*gamma)-.040849*Math.sin(2*gamma));
+  const declination=.006918-.399912*Math.cos(gamma)+.070257*Math.sin(gamma)-.006758*Math.cos(2*gamma)+.000907*Math.sin(2*gamma)-.002697*Math.cos(3*gamma)+.00148*Math.sin(3*gamma);
+  const latitude=37.5665*Math.PI/180;
+  const hourAngle=Math.acos(Math.cos(90.833*Math.PI/180)/(Math.cos(latitude)*Math.cos(declination))-Math.tan(latitude)*Math.tan(declination))*180/Math.PI;
+  const noon=720-4*126.978-equation+540;
+  return {sunrise:noon-4*hourAngle,sunset:noon+4*hourAngle};
+}
+const THEME_KEY='mps-centers2-theme-mode-v1';
 const requestedTheme=typeof location==='undefined'?'':new URLSearchParams(location.search).get('theme');
-const savedTheme=localStorage.getItem(THEME_KEY);
-let theme=['light','dark'].includes(requestedTheme)?requestedTheme:(['light','dark'].includes(savedTheme)?savedTheme:pageTheme);
-function applyTheme(){if(document.documentElement)document.documentElement.dataset.theme=theme;const button=$('#theme-toggle');button.textContent=theme==='dark'?'☼ 라이트':'☾ 다크';button.setAttribute?.('aria-label',`${theme==='dark'?'라이트':'다크'} 모드로 변경`);button.setAttribute?.('aria-pressed',String(theme==='light'))}
-$('#theme-toggle').addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';try{localStorage.setItem(THEME_KEY,theme)}catch{}applyTheme()});
+let themeMode=['light','dark','auto'].includes(requestedTheme)?requestedTheme:(localStorage.getItem(THEME_KEY)||'auto');
+if(!['light','dark','auto'].includes(themeMode))themeMode='auto';
+let theme='light';
+function applyTheme(){
+  const parts=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Seoul',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date());
+  const minutes=Number(parts.find(p=>p.type==='hour').value)*60+Number(parts.find(p=>p.type==='minute').value);
+  const {sunrise,sunset}=solarSchedule();
+  theme=themeMode==='auto'?(minutes>=sunrise&&minutes<sunset?'light':'dark'):themeMode;
+  if(document.documentElement)document.documentElement.dataset.theme=theme;
+  const button=$('#theme-toggle');
+  button.textContent=themeMode==='auto'?`◐ 자동 · ${theme==='light'?'라이트':'다크'}`:themeMode==='light'?'☼ 라이트':'☾ 다크';
+  button.setAttribute?.('aria-label',`화면 모드: ${themeMode==='auto'?'일출·일몰 자동':themeMode==='light'?'라이트':'다크'}. 누르면 다음 모드로 변경`);
+  button.setAttribute?.('aria-pressed',String(themeMode!=='auto'));
+  button.title='자동 → 라이트 → 다크 · 자동은 서울 일출·일몰 기준';
+}
+$('#theme-toggle').addEventListener('click',()=>{themeMode={auto:'light',light:'dark',dark:'auto'}[themeMode];try{localStorage.setItem(THEME_KEY,themeMode)}catch{}applyTheme()});
+if(typeof window.setInterval==='function'){window.setInterval(applyTheme,60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)applyTheme()})}
 applyTheme();
 render();

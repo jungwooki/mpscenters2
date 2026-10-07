@@ -587,3 +587,43 @@ button,.button{border-radius:4px!important}
 :root[data-theme="light"] .idp-mps{border-color:#e7dfd4}
 :root[data-theme="light"] .access-cards div{background:#eff4ec}
 @media(max-width:700px){.compact-result{font-size:11px}.result-key{width:24px;flex-basis:24px}.compact-player{padding:10px}.idp-card-tags{gap:3px}.idp-card-tag{padding:2px 5px}.stage-physical-focus{font-size:10px}.stage-physical-focus span{margin-left:4px}}
+/* Open roster: sections and separators replace nested boxes. */
+.shell .roster.panel,.shell .access.panel{background:none;border:0;border-radius:0;box-shadow:none;padding:0}
+.demo{background:none;border:0;border-bottom:1px solid #444;border-radius:0;padding:8px 0}
+.stage-players{border:0;padding-left:0;gap:0 24px}
+.player-card-button,.player-card-button.selected{background:none;border:0;border-bottom:1px solid #4a4a4a;border-radius:0;box-shadow:none;padding:13px 0 16px}
+.player-card-button:hover{background:#ffffff04;border-color:#666}
+.compact-top{border:0;padding-bottom:2px}
+.compact-result.mental,.compact-result.physical,.compact-result.idp{background:none;border:0;border-radius:0;padding:4px 0}
+.compact-result.mental .result-key{color:#b5a4df}.compact-result.physical .result-key{color:#95c9d8}
+.stage-group-head{margin-bottom:0;padding-bottom:3px}
+.stage-physical-focus{margin-bottom:4px}
+.stats{gap:0;border-top:1px solid #484848;border-bottom:1px solid #484848;margin-top:26px}
+.stats article{background:none;border:0;border-radius:0;padding:16px 10px;box-shadow:none}
+.stats article+article{border-left:1px solid #484848}
+.access{margin-top:30px}
+.access-cards div{background:none;border:0;border-left:2px solid #555;border-radius:0}
+.player-tabs{gap:8px;border-bottom:0;padding:12px 0 3px;margin-top:3px}
+.player-tabs button{font-size:17px;font-weight:850;min-height:52px;background:#333;border:1px solid #555;color:#bbb}
+.player-tabs button.active{background:#42332b;border-color:#d06440;color:#fff;-webkit-text-fill-color:#fff}
+.player-tabs button.active::after{left:0;right:0;bottom:-1px;height:3px}
+.player-tabs button:hover{border-color:#d06440}
+.focus-optional summary{font-size:14px;line-height:1.4}
+.focus-optional summary .focus-select-action{display:inline-flex;align-items:center;justify-content:center;flex:none;min-height:44px;padding:8px 11px;border-radius:4px;background:#c93f1d;color:#fff;font-size:13px;font-weight:850;margin-left:auto}
+.focus-optional summary::after{display:none}
+:root[data-theme="light"] .shell .roster.panel,:root[data-theme="light"] .shell .access.panel{background:none;border:0;box-shadow:none}
+:root[data-theme="light"] .demo{background:none;border:0;border-bottom:1px solid #ddd5ca}
+:root[data-theme="light"] .stage-players{border:0;padding-left:0}
+:root[data-theme="light"] .player-card-button,:root[data-theme="light"] .player-card-button.selected{background:none;border:0;border-bottom:1px solid #dddfe1;border-radius:0;box-shadow:none}
+:root[data-theme="light"] .player-card-button:hover{background:#ffffff50;border-color:#bbc5cb}
+:root[data-theme="light"] .compact-result.mental,:root[data-theme="light"] .compact-result.physical,:root[data-theme="light"] .compact-result.idp{background:none;border:0}
+:root[data-theme="light"] .compact-result.mental .result-key{color:#716395}
+:root[data-theme="light"] .compact-result.physical .result-key{color:#426c8e}
+:root[data-theme="light"] .stats{border-color:#ddd5ca}
+:root[data-theme="light"] .stats article{background:none;border:0;box-shadow:none}
+:root[data-theme="light"] .stats article+article{border-left:1px solid #ddd5ca}
+:root[data-theme="light"] .access-cards div{background:none;border-left-color:#ccd6c6}
+:root[data-theme="light"] .player-tabs button{background:#f0ece5;border:1px solid #d9d2c8;color:#697582}
+:root[data-theme="light"] .player-tabs button.active{background:#fff2e9;border-color:#c95330;color:#17395c;-webkit-text-fill-color:#17395c}
+:root[data-theme="light"] .focus-optional summary .focus-select-action{background:#c95330;color:#fff}
+@media(max-width:700px){.stage-group-head{padding-left:9px}.stage-physical-focus{padding-left:12px}.player-tabs button{font-size:16px}.focus-optional summary{gap:8px}.theme-toggle{font-size:10px;padding:7px 6px}.shell .roster.panel{padding:0}.stats strong{font-size:21px}}
