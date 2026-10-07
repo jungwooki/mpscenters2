@@ -833,3 +833,41 @@ button,input,select,textarea{min-width:0}
 :root[data-theme="light"] .calendar-side>h3{padding-bottom:10px;border-bottom:1px solid #e3e1ed}
 :root[data-theme="light"] .booking-row{border-color:#dde2ee;background:#fff}
 @media(max-width:700px){:root[data-theme="light"] .stage-players>.player-card-button,:root[data-theme="light"] .stage-players>.player-card-button.selected{padding:0}:root[data-theme="light"] #player-detail-dialog .detail-head{margin:-14px -12px 0;padding:16px 12px}:root[data-theme="light"] .player-card-identity{padding:9px 10px 7px}:root[data-theme="light"] .player-card-results{padding:4px 10px 7px}:root[data-theme="light"] .compact-top strong{font-size:14px}}
+/* Reference fidelity: readable charcoal records and distinct filled/outlined tags. */
+.reference-tag{display:inline-flex;align-items:center;justify-content:center;width:fit-content;min-height:23px;padding:3px 6px;border:1px solid #596177;border-radius:4px;font-size:11px;line-height:1.2;font-weight:750;vertical-align:middle}
+.card-observation{display:block;line-height:1.6}
+.result-copy .reference-tag{display:inline-flex}
+.result-copy{gap:4px}
+:root[data-theme="light"]{--ui-blue:#4d8fff;--muted:#85879e;--line:#d9dbea}
+:root[data-theme="light"] .heading h1,:root[data-theme="light"] .panel h2,:root[data-theme="light"] .detail-head h2,:root[data-theme="light"] .section-label{color:#23242e}
+:root[data-theme="light"] .player-card-identity{background:#f3f7ff}
+:root[data-theme="light"] .compact-top strong{color:#22242d;font-size:16px}
+:root[data-theme="light"] .compact-dob{color:#747783}
+:root[data-theme="light"] .compact-stage{background:#cedfff;color:#296ccc;border-radius:4px;padding:3px 5px;font-weight:750}
+:root[data-theme="light"] .compact-remaining{color:#467cbe}
+:root[data-theme="light"] .compact-measure{color:#737887}
+:root[data-theme="light"] .compact-measure small{background:#e9edf2;color:#7a8090;border-radius:3px;padding:2px 4px}
+:root[data-theme="light"] .compact-result{color:#41434f;font-size:12px;line-height:1.5;padding:7px 0}
+:root[data-theme="light"] .compact-result .result-key{font-size:12px;color:#8688a1;line-height:23px}
+:root[data-theme="light"] .tag-blue{background:#cedfff;border-color:#cedfff;color:#296ccc}
+:root[data-theme="light"] .tag-mint{background:#d8f0ef;border-color:#d8f0ef;color:#078f92}
+:root[data-theme="light"] .tag-lavender,:root[data-theme="light"] .result-copy>strong.tag-lavender{background:#ebe7ff;border-color:#ebe7ff;color:#6e58b6;font-size:12px}
+:root[data-theme="light"] .tag-outline{background:#fff;border-color:#e0e1e8;color:#6b6e80}
+:root[data-theme="light"] .idp-card-tag{min-height:24px;display:inline-flex;align-items:center;background:#fff;border:1px solid #cdd9ed;color:#527bbb;border-radius:4px;padding:3px 6px;font-size:11px}
+:root[data-theme="light"] .idp-card-tags{gap:5px}
+:root[data-theme="light"] .stage-chip{background:#f7f8fd;border-color:#dfe3ef;color:#6e7189}
+:root[data-theme="light"] .stage-chip.active{background:#e0ecff;border-color:#8eb8ff;color:#2d75d8}
+:root[data-theme="light"] .stage-chip.active b{color:#2d75d8}
+:root[data-theme="light"] .button.primary,:root[data-theme="light"] .focus-optional summary .focus-select-action{background:#4d8fff;border-color:#4d8fff;color:#fff;-webkit-text-fill-color:#fff}
+:root[data-theme="light"] .button.soft{background:#edf5ff;color:#397ce1}
+:root[data-theme="light"] .stage-group-head{background:#f7f8fd}
+:root[data-theme="light"] .player-tabs button{background:#f4f5fa;border-color:#e0e3ed;color:#85879e}
+:root[data-theme="light"] .player-tabs button.active{background:#eaf3ff;border-color:#a9cbff;color:#3478d7;-webkit-text-fill-color:#3478d7}
+:root[data-theme="light"] .growth-title strong{background:#cedfff;color:#296ccc}
+:root[data-theme="light"] .insight-strip-head strong{background:#ebe7ff;color:#6e58b6;padding:3px 6px;border-radius:4px}
+:root[data-theme="light"] .insight-strip.physical .insight-strip-head strong{background:#d8f0ef;color:#078f92}
+:root[data-theme="light"] .insight-inline p,:root[data-theme="light"] .insight-recs{color:#4e5363;font-size:12px;line-height:1.5}
+:root[data-theme="light"] #player-detail-dialog .detail-head{background:#f3f7ff}
+:root[data-theme="light"] #player-detail-dialog .detail-head .badge{background:#e9edf2;color:#666f7f}
+@media(max-width:700px){:root[data-theme="light"] .compact-top strong{font-size:14px}:root[data-theme="light"] .compact-stage{padding:3px;font-size:10px}:root[data-theme="light"] .compact-result{font-size:11px;padding:6px 0}:root[data-theme="light"] .tag-lavender,:root[data-theme="light"] .result-copy>strong.tag-lavender{font-size:11px}.reference-tag{font-size:10px;min-height:21px;padding:2px 5px}.result-copy{gap:3px}}
+@media(max-width:359px){:root[data-theme="light"] .compact-top strong{font-size:13px}:root[data-theme="light"] .compact-stage{font-size:9px;padding:2px 3px}}
