@@ -106,11 +106,12 @@ function renderStageGuide(){const box=$('#stage-guide'),guide=STAGE_GUIDES[stage
 function card(p){
   const report=p.report,mental=mentalResult(p),physical=physicalPlan(p);
   return `<button class="player-card-button compact-player" data-id="${esc(p.id)}" type="button" aria-label="${esc(p.name)} 선수 정보 열기">
-    <span class="compact-top"><strong>${esc(p.name)}</strong><span class="compact-dob">${esc(displayDate(p.dob))}</span><span class="compact-stage">${esc(getStage(p))}</span><b class="compact-remaining">남은 ${Math.max(0,p.paid-p.used)}회</b></span>
+    <span class="player-card-identity"><span class="compact-top"><strong>${esc(p.name)}</strong><span class="compact-dob">${esc(displayDate(p.dob))}</span><span class="compact-stage">${esc(getStage(p))}</span><b class="compact-remaining">남은 ${Math.max(0,p.paid-p.used)}회</b></span>
     <span class="compact-measure"><span>최근 검사 ${esc(displayDate(report?.examDate))}</span><span>뼈나이 ${esc(report?yearsMonths(report.boneAgeMonths):'대기')}</span><span>${esc(signedDiff(p))}</span><small>${esc(p.code)}</small></span>
-    <span class="compact-result mental"><b class="result-key">M</b><span class="result-copy"><strong>${esc(mental?.type||'결과 대기')}</strong>${mental?`<span>강점 ${mental.strengths.map(esc).join(' · ')} / 보완점 ${mental.needs.map(esc).join(' · ')}</span>`:''}</span></span>
+    </span><span class="player-card-results"><span class="compact-result mental"><b class="result-key">M</b><span class="result-copy"><strong>${esc(mental?.type||'결과 대기')}</strong>${mental?`<span>강점 ${mental.strengths.map(esc).join(' · ')} / 보완점 ${mental.needs.map(esc).join(' · ')}</span>`:''}</span></span>
     <span class="compact-result physical"><b class="result-key">P</b><span class="result-copy">${physical?`<span><strong>피지컬강점</strong> ${physical.strengths.length?physical.strengths.map(esc).join(' · '):'결과 대기'} / <strong>보완점</strong> ${physical.needs.map(esc).join(' · ')||'결과 대기'}</span>`:'결과 대기'}</span></span>
     <span class="compact-result idp"><b class="result-key">IDP</b><span class="idp-card-tags">${p.idp?.priorities?.length?p.idp.priorities.slice(0,3).map(item=>`<span class="idp-card-tag">${esc(item.label)}</span>`).join(''):'<span class="idp-unset">목표 선택 전</span>'}</span></span>
+    </span>
   </button>`
 }
 function renderRoster(list){$('#visible-count').textContent=`${list.length}명`;$('#player-list').innerHTML=list.length?STAGES.map(stage=>{const group=list.filter(p=>getStage(p)===stage);return group.length?`<section class="stage-group"><div class="stage-group-head"><h3>${esc(stage)}</h3><span>${group.length}명</span></div>${STAGE_PHYSICAL_FOCUS[stage]?`<p class="stage-physical-focus">훈련 중점 <span>${esc(STAGE_PHYSICAL_FOCUS[stage])}</span></p>`:''}<div class="stage-players">${group.map(card).join('')}</div></section>`:''}).join(''):'<p class="empty">해당 선수가 없습니다.</p>'}
